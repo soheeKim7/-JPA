@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+  version="2.1">
+
+	<!--RESOURCE_LOCAL: 엔티티 매니저, 트랜잭션 등을 직접 관리
+	  JTA: 직접 엔티티 매니저를 생성하지 않고 컨테이너0가 대신 생성해서 넘겨주는 엔티티 매니저를 사용하며 트랜잭션 역시 컨테이너가 관리-->
+	  <!-- 컨테이너= 스프링에서 관리하는 컨테이너 -->
+	  <!-- 톰켓 = jsp의 컨테이너 라고 함 -->
+	  <!-- 스프링 컨테이너에서 java를 관리함  -->
+  <persistence-unit name="db1" transaction-type="RESOURCE_LOCAL">  <!-- db별로 persistence unit 설정 가능함 -->
+
+    <properties>
+      <!-- 필수 속성 시작 -->
+      <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="bootuser"/>
+      <property name="javax.persistence.jdbc.password" value="bootuser"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3307/bootex"/>
+                               <!-- 방언 --> <!-- 하이버네이트가 sql을 사용하게 하기 위해 설정하는 사항  -->
+                               <!-- 그래서 sql을 사용못하는 DB도 사용하게 할수 있게됨 -->
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDB103Dialect"/>
+      <!-- 필수 속성 끝 -->
+
+      <!-- 애플리케이션이 실행되면서 데이터베이스에 테이블 자동 생성 -->
+      <!-- create, update, validate, create-drop, none -->
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.format_sql" value="true"/>
+
+    </properties>
+
+
+  </persistence-unit>
+
+</persistence>
