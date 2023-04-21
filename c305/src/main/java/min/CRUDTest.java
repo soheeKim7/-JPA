@@ -15,7 +15,8 @@ public class CRUDTest {
 		System.out.println("없다");
 		*/
 		
-		
+		//쓰기,업데이트
+		Service.save(new User("cccc","233"));
 		
 		
 		
